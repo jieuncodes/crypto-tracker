@@ -1,8 +1,16 @@
 import styled from "styled-components";
-import { Link, Outlet, Route, Routes, useLocation, useMatch, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import {
+  Link,
+  Route,
+  Routes,
+  useLocation,
+  useMatch,
+  useParams,
+} from "react-router-dom";
 import Chart from "./Chart";
 import Price from "./Price";
+import { fetchCoinInfo, fetchCoinTickers } from "../api";
+import { useQuery } from "react-query";
 
 const Container = styled.div``;
 const Header = styled.header`
@@ -33,7 +41,6 @@ const Description = styled.p`
   margin: 20px 0px;
 `;
 
-
 const Tabs = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -49,9 +56,11 @@ const Tab = styled.span<{ isActive: boolean }>`
   background-color: rgba(0, 0, 0, 0.5);
   padding: 7px 0px;
   border-radius: 10px;
-  color: ${(props) =>
-    props.isActive ? props.theme.accentColor : props.theme.textColor};
+  background-color: ${(props) =>
+    props.isActive ? props.theme.accentColor : null};
   a {
+    padding: 7px 0px;
+
     display: block;
   }
 `;
@@ -119,65 +128,53 @@ interface PriceData {
 function Coin() {
   const { state } = useLocation() as RouteState;
   const { coinId } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [info, setInfo] = useState<InfoData>();
-  const [priceInfo, setPriceInfo] = useState<PriceData>();
   const priceMatch = useMatch("/:coinId/price");
   const chartMatch = useMatch("/:coinId/chart");
 
+  const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(
+    ["info", coinId],
+    () => fetchCoinInfo(String(coinId)),
+    { staleTime: 30000 }
+  );
 
-  useEffect(() => {
-    (async () => {
-      const infoData = await (
-        await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)
-      ).json();
-      const priceData = await (
-        await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
-      ).json();
-      setInfo(infoData);
-      setPriceInfo(priceData);
-      setLoading(false);
-    })();
-  });
+  const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
+    ["tickers", coinId],
+    () => fetchCoinTickers(String(coinId))
+  );
 
   return (
     <Container>
       <Header>
         <Title>
-          {state?.name ? state.name : loading ? "Loading..." : null}
+          {state?.name ? state.name : (infoLoading || tickersLoading) ? "Loading..." : null}
         </Title>
       </Header>
       <>
         <Overview>
           <OverviewItem>
             <span>Rank : </span>
-            <span>{info?.rank}</span>
+            <span>{infoData?.rank}</span>
           </OverviewItem>
           <OverviewItem>
             <span>Symbol :</span>
-            <span>{info?.symbol}</span>
+            <span>{infoData?.symbol}</span>
           </OverviewItem>
           <OverviewItem>
             <span>Price</span>
           </OverviewItem>
         </Overview>
-        <Description>{info?.description}</Description>
+        <Description>{infoData?.description}</Description>
 
         <Overview>
           <OverviewItem>
             <span>Total Supply</span>
-            <span>{priceInfo?.total_supply}</span>
+            <span>{tickersData?.total_supply}</span>
           </OverviewItem>
           <OverviewItem>
             <span>Max Supply</span>
-            <span>{priceInfo?.max_supply}</span>
+            <span>{tickersData?.max_supply}</span>
           </OverviewItem>
         </Overview>
-        <Routes>
-          <Route path="price" element={<Chart />} />
-          <Route path="chart" element={<Price />} />
-        </Routes>
-
         <Tabs>
           <Tab isActive={chartMatch !== null}>
             <Link to={`/${coinId}/chart`}>Chart</Link>
@@ -187,11 +184,15 @@ function Coin() {
           </Tab>
         </Tabs>
 
+        <Routes>
+          <Route path="price" element={<Price />} />
+          <Route path="chart" element={<Chart coinId={coinId!} />} />
+        </Routes>
+
         
       </>
-
     </Container>
-  );
+  );  
 }
 
 export default Coin;
