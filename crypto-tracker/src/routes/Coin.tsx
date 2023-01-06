@@ -11,6 +11,8 @@ import Chart from "./Chart";
 import Price from "./Price";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { useQuery } from "react-query";
+import { Helmet } from "react-helmet";
+import { useRecoilValue } from "recoil";
 
 const Container = styled.div``;
 const Header = styled.header`
@@ -66,6 +68,9 @@ const Tab = styled.span<{ isActive: boolean }>`
 `;
 
 const Title = styled.h1``;
+const Button = styled(Link)`
+  margin-right: 10px;
+`;
 
 interface RouteState {
   state: { name: string };
@@ -91,7 +96,7 @@ interface InfoData {
   last_data_at: string;
 }
 
-interface PriceData {
+export interface IPriceData {
   id: string;
   name: string;
   symbol: string;
@@ -137,14 +142,20 @@ function Coin() {
     { staleTime: 30000 }
   );
 
-  const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
+  const { isLoading: tickersLoading, data: tickersData } = useQuery<IPriceData>(
     ["tickers", coinId],
-    () => fetchCoinTickers(String(coinId))
+    () => fetchCoinTickers(String(coinId)), {refetchInterval: 5000},
   );
 
   return (
     <Container>
+      <Helmet>
+        <title>
+          {state?.name ? state.name : (infoLoading || tickersLoading) ? "Loading..." : null}
+        </title>
+      </Helmet>
       <Header>
+        <Button to="/">⬅️</Button>
         <Title>
           {state?.name ? state.name : (infoLoading || tickersLoading) ? "Loading..." : null}
         </Title>
@@ -161,6 +172,7 @@ function Coin() {
           </OverviewItem>
           <OverviewItem>
             <span>Price</span>
+            <span>${tickersData?.quotes.USD.price.toFixed(3)}</span>
           </OverviewItem>
         </Overview>
         <Description>{infoData?.description}</Description>
@@ -185,7 +197,7 @@ function Coin() {
         </Tabs>
 
         <Routes>
-          <Route path="price" element={<Price />} />
+          <Route path="price" element={<Price name="" price="100" ></Price>}/>
           <Route path="chart" element={<Chart coinId={coinId!} />} />
         </Routes>
 

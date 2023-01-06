@@ -1,6 +1,6 @@
 #Crypto Tracker
--[ ] Dark mode toggle button
--[ ] Home Button
+-[x] Dark mode toggle button
+-[x] Home Button
 -[ ] /:coinId/price
--[ ] /:coinId/chart
--[ ] Candle stick chart
+-[x] /:coinId/chart
+-[x] Candle stick chart

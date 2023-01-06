@@ -1,7 +1,11 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import Router from "./Router";
 import reset from "styled-reset";
-import {ReactQueryDevtools} from "react-query/devtools";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { isLightAtom } from "./atoms";
+import { lightTheme, darkTheme } from "./theme";
+
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -20,12 +24,27 @@ const GlobalStyle = createGlobalStyle`
     color:inherit;
   }`;
 
+const ThemeToggleButton = styled.button`
+display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+  top: 10px;`;
+
 function App() {
+  const [isLight, setIsLightAtom] = useRecoilState(isLightAtom);
+  const toggleTheme = () => setIsLightAtom((current) => !current);
   return (
     <>
-      <GlobalStyle />
-      <Router />
-      <ReactQueryDevtools initialIsOpen={true}/>
+      <ThemeProvider theme={isLight ? lightTheme : darkTheme}>
+        <GlobalStyle />
+        <Router />
+        <ThemeToggleButton onClick={toggleTheme}>
+          {isLight ? "LightMode" : "DarkMode"}
+        </ThemeToggleButton>
+        <ReactQueryDevtools initialIsOpen={true} />
+      </ThemeProvider>
+      
     </>
   );
 }

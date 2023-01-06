@@ -8,6 +8,6 @@ export const lightTheme: DefaultTheme = {
 
 export const darkTheme: DefaultTheme = {
   bgColor: "#0C1426",
-  textColor: "white",
+  textColor: "black",
   accentColor: "#1099FA",
 }
