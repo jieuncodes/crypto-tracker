@@ -4,11 +4,10 @@ import Coins from "./routes/Coins";
 
 function Router() {
   return (
-    <BrowserRouter>    
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Coins />} />
         <Route path="/:coinId/*" element={<Coin />} />
-          
       </Routes>
     </BrowserRouter>
   );

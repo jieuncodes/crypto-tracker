@@ -10,4 +10,4 @@ export const darkTheme: DefaultTheme = {
   bgColor: "#0C1426",
   textColor: "black",
   accentColor: "#add8e6",
-}
+};
