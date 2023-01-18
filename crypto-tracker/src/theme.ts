@@ -9,5 +9,5 @@ export const lightTheme: DefaultTheme = {
 export const darkTheme: DefaultTheme = {
   bgColor: "#0C1426",
   textColor: "black",
-  accentColor: "#1099FA",
+  accentColor: "#add8e6",
 }

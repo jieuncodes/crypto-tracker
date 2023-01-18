@@ -12,15 +12,16 @@ import Price from "./Price";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { useQuery } from "react-query";
 import { Helmet } from "react-helmet";
-import { useRecoilValue } from "recoil";
 
 const Container = styled.div``;
+
 const Header = styled.header`
   height: 15vh;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
+
 const Overview = styled.div`
   display: flex;
   justify-content: space-between;
@@ -28,6 +29,7 @@ const Overview = styled.div`
   padding: 10px 20px;
   border-radius: 10px;
 `;
+
 const OverviewItem = styled.div`
   display: flex;
   flex-direction: column;
@@ -39,6 +41,7 @@ const OverviewItem = styled.div`
     margin-bottom: 5px;
   }
 `;
+
 const Description = styled.p`
   margin: 20px 0px;
 `;
@@ -68,6 +71,7 @@ const Tab = styled.span<{ isActive: boolean }>`
 `;
 
 const Title = styled.h1``;
+
 const Button = styled(Link)`
   margin-right: 10px;
 `;
@@ -146,6 +150,8 @@ function Coin() {
     ["tickers", coinId],
     () => fetchCoinTickers(String(coinId)), {refetchInterval: 5000},
   );
+  console.log('infoData', infoData);
+  console.log('tickersData', tickersData?.quotes);
 
   return (
     <Container>
@@ -197,7 +203,7 @@ function Coin() {
         </Tabs>
 
         <Routes>
-          <Route path="price" element={<Price name="" price="100" ></Price>}/>
+          <Route path="price" element={<Price name={tickersData?.name as string} price={tickersData?.quotes.USD} />}/>
           <Route path="chart" element={<Chart coinId={coinId!} />} />
         </Routes>
 

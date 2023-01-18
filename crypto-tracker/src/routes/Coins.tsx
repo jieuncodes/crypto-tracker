@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 import { fetchCoins } from "../api";
 import { useQuery } from "react-query";
 

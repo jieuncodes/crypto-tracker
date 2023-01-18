@@ -27,7 +27,7 @@ const ContentTitle = styled.div`
   font-weight: 800;
 `;
 
-const ConTentMain = styled.div<{ checker?: number }>`
+const ContentMain = styled.div<{ checker?: number }>`
   font-size: 30px;
 `;
 
@@ -44,30 +44,30 @@ interface IPrice {
 }
 
 function Price({ price, name }: IPrice) {
-  const date: IQuote = price.quotes.USD;
+  const priceData: IQuote = price;
   return (
     <Container>
       <Helmet>
-        <title>{`${name} | Price`}</title>
+        <title>{`${name} Price`}</title>
       </Helmet>
       <Content>
-        <ContentTitle>ALL TIME HIGH PRICE</ContentTitle>
-        <ConTentMain>${date.ath_price}</ConTentMain>
+        <ContentTitle>All Time High</ContentTitle>
+        <ContentMain>${priceData.ath_price}</ContentMain>
       </Content>
       <Content>
-        <ContentTitle>MARKET CAP</ContentTitle>
-        <ConTentMain>${date.market_cap}</ConTentMain>
+        <ContentTitle>Market Cap</ContentTitle>
+        <ContentMain>${priceData.market_cap}</ContentMain>
       </Content>
       <Content>
-        <ContentTitle>PRICE CHANGE IN 1H</ContentTitle>
-        <ConTentMain checker={date.percent_change_1h}>
-          {date.percent_change_1h}%
-        </ConTentMain>
+        <ContentTitle>Price Change in 1Hr</ContentTitle>
+        <ContentMain checker={priceData.percent_change_1h}>
+          {priceData.percent_change_1h}%
+        </ContentMain>
       </Content>
 
       <Content>
-        <ContentTitle>COIN VOLUME IN 24H</ContentTitle>
-        <ConTentMain>{date.volume_24h}</ConTentMain>
+        <ContentTitle>Coin Volume in 24hr</ContentTitle>
+        <ContentMain>{priceData.volume_24h}</ContentMain>
       </Content>
     </Container>
   );
