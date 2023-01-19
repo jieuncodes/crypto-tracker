@@ -66,10 +66,8 @@ const Nav = styled.div`
 
 const Body = styled.div`
   grid-area: body;
-  width: 100%;
-  margin-top: 30px;
-  margin-left: 40px;
-
+  width: auto;
+  margin: 40px;
   display: flex;
 `;
 
@@ -80,6 +78,7 @@ function App() {
     <>
       <ThemeProvider theme={isLight ? lightTheme : darkTheme}>
         <GlobalStyle />
+        {/* <Contents className="dark"> */}
         <Contents>
           <Header>
             <Logo />

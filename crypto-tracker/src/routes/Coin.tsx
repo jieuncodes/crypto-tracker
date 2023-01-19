@@ -12,6 +12,7 @@ import Price from "./Price";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { useQuery } from "react-query";
 import { Helmet } from "react-helmet";
+import { InfoData, IPriceData } from "../interfaces";
 
 const Container = styled.div``;
 
@@ -79,60 +80,6 @@ const Button = styled(Link)`
 interface RouteState {
   state: { name: string };
 }
-interface InfoData {
-  id: string;
-  name: string;
-  symbol: string;
-  rank: number;
-  is_new: boolean;
-  is_active: boolean;
-  type: string;
-  description: string;
-  message: string;
-  open_source: boolean;
-  started_at: string;
-  development_status: string;
-  hardware_wallet: boolean;
-  proof_type: string;
-  org_structure: string;
-  hash_algorithm: string;
-  first_data_at: string;
-  last_data_at: string;
-}
-
-export interface IPriceData {
-  id: string;
-  name: string;
-  symbol: string;
-  rank: number;
-  circulating_supply: number;
-  total_supply: number;
-  max_supply: number;
-  beta_value: number;
-  first_data_at: string;
-  last_updated: string;
-  quotes: {
-    USD: {
-      ath_date: string;
-      ath_price: number;
-      market_cap: number;
-      market_cap_change_24h: number;
-      percent_change_1h: number;
-      percent_change_1y: number;
-      percent_change_6h: number;
-      percent_change_7d: number;
-      percent_change_12h: number;
-      percent_change_15m: number;
-      percent_change_24h: number;
-      percent_change_30d: number;
-      percent_change_30m: number;
-      percent_from_price_ath: number;
-      price: number;
-      volume_24h: number;
-      volume_24h_change_24h: number;
-    };
-  };
-}
 
 function Coin() {
   const { state } = useLocation() as RouteState;
@@ -148,22 +95,31 @@ function Coin() {
 
   const { isLoading: tickersLoading, data: tickersData } = useQuery<IPriceData>(
     ["tickers", coinId],
-    () => fetchCoinTickers(String(coinId)), {refetchInterval: 5000},
+    () => fetchCoinTickers(String(coinId)),
+    { refetchInterval: 5000 }
   );
-  console.log('infoData', infoData);
-  console.log('tickersData', tickersData?.quotes);
+  console.log("infoData", infoData);
+  console.log("tickersData", tickersData?.quotes);
 
   return (
     <Container>
       <Helmet>
         <title>
-          {state?.name ? state.name : (infoLoading || tickersLoading) ? "Loading..." : null}
+          {state?.name
+            ? state.name
+            : infoLoading || tickersLoading
+            ? "Loading..."
+            : null}
         </title>
       </Helmet>
       <Header>
         <Button to="/">⬅️</Button>
         <Title>
-          {state?.name ? state.name : (infoLoading || tickersLoading) ? "Loading..." : null}
+          {state?.name
+            ? state.name
+            : infoLoading || tickersLoading
+            ? "Loading..."
+            : null}
         </Title>
       </Header>
       <>
@@ -203,14 +159,20 @@ function Coin() {
         </Tabs>
 
         <Routes>
-          <Route path="price" element={<Price name={tickersData?.name as string} price={tickersData?.quotes.USD} />}/>
+          <Route
+            path="price"
+            element={
+              <Price
+                name={tickersData?.name as string}
+                price={tickersData?.quotes.USD}
+              />
+            }
+          />
           <Route path="chart" element={<Chart coinId={coinId!} />} />
         </Routes>
-
-        
       </>
     </Container>
-  );  
+  );
 }
 
 export default Coin;

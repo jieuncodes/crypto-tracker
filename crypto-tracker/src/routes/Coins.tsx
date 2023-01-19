@@ -1,50 +1,16 @@
-import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { fetchCoins } from "../api";
+import { fetchCoins, fetchCoinTickers } from "../api";
 import { useQuery } from "react-query";
-
-const Container = styled.div``;
-
-const Header = styled.div`
-  color: ${(props) => props.theme.accentColor};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Title = styled.h1`
-  font-size: 30px;
-`;
-
-const CoinList = styled.ul``;
-
-const Coin = styled.li`
-  background-color: white;
-  padding: 20px;
-  border-radius: 15px;
-  margin-bottom: 10px;
-  color: ${(props) => props.theme.textColor};
-  a {
-    display: block;
-  }
-`;
-const Loader = styled.span`
-  text-align: center;
-`;
-const Img = styled.img`
-  width: 35px;
-  height: 35px;
-  margin-right: 10px;
-`;
-interface ICoin {
-  id: string;
-  name: string;
-  symbol: string;
-  rank: number;
-  is_new: boolean;
-  is_active: boolean;
-  type: string;
-}
+import {
+  Container,
+  Header,
+  Title,
+  CoinList,
+  Coin,
+  Loader,
+  Img,
+} from "../styles/Coins";
+import { ICoin, IPriceData } from "../interfaces";
 
 function Coins() {
   const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
@@ -52,20 +18,33 @@ function Coins() {
   return (
     <Container>
       <Header>
-        <Title>CoinList</Title>
+        <Title>Top Coins</Title>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>
       ) : (
         <CoinList>
-          {data?.slice(0,100).map((coin) => (
+          {data?.slice(0, 100).map((coin) => (
             <Coin key={coin.id}>
-              <Link to={`/${coin.id}`} state={coin}>
-                <Img
-                  src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}
-                />
-                {coin.name}
-              </Link>
+              <thead>
+                <tr>
+                  <th scope="col">Rank</th>
+                  <th scope="col">Coin</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">1h %</th>
+                </tr>
+              </thead>
+              <td>{coin.rank}</td>
+              <td>
+                <Link to={`/${coin.id}`} state={coin}>
+                  <Img
+                    src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}
+                  />
+                  {coin.name}
+                </Link>
+              </td>
+              <td>$ {coin.quotes.USD.price.toFixed(2)}</td>
+              <td>{coin.quotes.USD.percent_change_1h}</td>
             </Coin>
           ))}
         </CoinList>
