@@ -1,8 +1,6 @@
-import { ICoin } from "./interfaces";
-
 const BASE_URL = "https://api.coinpaprika.com/v1";
 
-export async function fetchCoins() {
+export async function fetchTickers() {
   const response = await fetch(`${BASE_URL}/tickers`);
   return await response.json();
 }
@@ -13,7 +11,7 @@ export async function fetchCoinInfo(coinId: string) {
   );
 }
 
-export async function fetchCoinTickers(coinId: string) {
+export async function fetchTickerInfo(coinId: string) {
   return fetch(`${BASE_URL}/tickers/${coinId}`).then((response) =>
     response.json()
   );

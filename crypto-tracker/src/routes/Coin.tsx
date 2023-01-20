@@ -9,10 +9,10 @@ import {
 } from "react-router-dom";
 import Chart from "./Chart";
 import Price from "./Price";
-import { fetchCoinInfo, fetchCoinTickers } from "../api";
+import { fetchCoinInfo, fetchTickerInfo } from "../api";
 import { useQuery } from "react-query";
 import { Helmet } from "react-helmet";
-import { InfoData, IPriceData } from "../interfaces";
+import { ITickers, InfoData } from "../interfaces";
 
 const Container = styled.div``;
 
@@ -93,9 +93,9 @@ function Coin() {
     { staleTime: 30000 }
   );
 
-  const { isLoading: tickersLoading, data: tickersData } = useQuery<IPriceData>(
+  const { isLoading: tickersLoading, data: tickersData } = useQuery<ITickers>(
     ["tickers", coinId],
-    () => fetchCoinTickers(String(coinId)),
+    () => fetchTickerInfo(String(coinId)),
     { refetchInterval: 5000 }
   );
   console.log("infoData", infoData);

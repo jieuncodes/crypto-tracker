@@ -1,53 +1,65 @@
 import { Link } from "react-router-dom";
-import { fetchCoins, fetchCoinTickers } from "../api";
 import { useQuery } from "react-query";
 import {
   Container,
   Header,
   Title,
-  CoinList,
-  Coin,
+  TopCoinsTable,
   Loader,
   Img,
+  TopCoinsTHeader,
+  RankH,
+  RankD,
+  CoinNameD,
+  CoinNameH,
+  PriceH,
+  ChangeH,
+  Tr,
+  TopCoinsTBody,
 } from "../styles/Coins";
-import { ICoin, IPriceData } from "../interfaces";
+import { ITickers } from "../interfaces";
+import { fetchTickers } from "../api";
 
 function Coins() {
-  const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
+  const { isLoading, data } = useQuery<ITickers[]>("allCoins", fetchTickers);
 
   return (
     <Container>
       <Header>
         <Title>Top Coins</Title>
       </Header>
+
       {isLoading ? (
         <Loader>Loading...</Loader>
       ) : (
-        <CoinList>
+        <TopCoinsTable>
+          <TopCoinsTHeader>
+            <Tr>
+              <RankH scope="col">Rank</RankH>
+              <CoinNameH scope="col">Coin</CoinNameH>
+              <PriceH scope="col">Price</PriceH>
+              <ChangeH scope="col">1h %</ChangeH>
+            </Tr>
+          </TopCoinsTHeader>
+
           {data?.slice(0, 100).map((coin) => (
-            <Coin key={coin.id}>
-              <thead>
-                <tr>
-                  <th scope="col">Rank</th>
-                  <th scope="col">Coin</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">1h %</th>
-                </tr>
-              </thead>
-              <td>{coin.rank}</td>
-              <td>
-                <Link to={`/${coin.id}`} state={coin}>
-                  <Img
-                    src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}
-                  />
-                  {coin.name}
-                </Link>
-              </td>
-              <td>$ {coin.quotes.USD.price.toFixed(2)}</td>
-              <td>{coin.quotes.USD.percent_change_1h}</td>
-            </Coin>
+            <TopCoinsTBody>
+              <Tr>
+                <RankD>{coin.rank}</RankD>
+                <CoinNameD>
+                  <Link to={`/${coin.id}`} state={coin}>
+                    <Img
+                      src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}
+                    />
+                    {coin.name}
+                  </Link>
+                </CoinNameD>
+                <PriceH>$ {coin.quotes.USD.price.toFixed(2)}</PriceH>
+                <ChangeH>{coin.quotes.USD.percent_change_1h}</ChangeH>
+              </Tr>
+            </TopCoinsTBody>
           ))}
-        </CoinList>
+        </TopCoinsTable>
       )}
     </Container>
   );
