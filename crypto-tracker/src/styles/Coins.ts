@@ -1,12 +1,12 @@
 import tw from "tailwind-styled-components";
 
 export const Container = tw.div`
-w-full`;
+  w-full`;
 
 export const Header = tw.div`
-flex,
-align-middle
-mb-5
+  flex,
+  align-middle
+  mb-5
 `;
 
 export const Title = tw.h1`
@@ -18,7 +18,6 @@ export const Title = tw.h1`
 `;
 
 export const Coin = tw.div`
-  bg-slate-100
   w-full
   border-solid
   border-b-2
@@ -29,26 +28,32 @@ export const Loader = tw.span`
     align-middle
 `;
 export const Img = tw.img`
-w-10
-h-10
+  w-10
+  h-10
 `;
 
-export const TopCoinsTable = tw.table`
-w-full
-bg-slate-400
+export const TopCoins = tw.div`
+  w-full 
 `;
-export const TopCoinsTHeader = tw.thead`
-font-bold
-text-lg
+export const TopCoinsHeader = tw.div`
+  w-full
+  grid-cols-[60px_2fr_1fr_100px]
+  grid
+  font-bold
+  text-lg
+  mb-2
+  
 `;
+export const RankH = tw.div`flex justify-center place-items-center `;
+export const CoinNameH = tw.div`flex flex-row place-items-center  text-start -m-[60px]`;
+export const PriceH = tw.div`flex justify-end place-items-center `;
+export const ChangeH = tw.div`flex justify-end place-items-center `;
 
-export const TopCoinsTBody = tw.tbody`w-full `;
-export const Tr = tw.tr``;
-export const RankH = tw.th`w-20 bg-red-100`;
-export const RankD = tw.td`w-20 bg-slate-300 align-middle`;
-export const CoinNameH = tw.th`w-96 bg-orange-700`;
-export const CoinNameD = tw.td`w-96`;
-export const PriceH = tw.th`w-44`;
-export const PriceD = tw.td`w-44 text-end`;
-export const ChangeH = tw.th`w-44 bg-green-50`;
-export const ChangeD = tw.td`w-44`;
+export const TopCoinsData = tw.div` grid-cols-[60px_2fr_1fr_100px] grid w-full mb-1 h-14 `;
+
+export const RankD = tw.div`flex justify-center place-items-center  text-center`;
+export const CoinNameD = tw.div` flex flex-row place-items-center  text-start `;
+export const CoinImg = tw.div`mr-4`;
+export const CoinName = tw.div``;
+export const PriceD = tw.div`flex justify-end place-items-center `;
+export const ChangeD = tw.div`flex justify-end place-items-center `;
