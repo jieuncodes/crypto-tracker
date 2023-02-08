@@ -1,8 +1,12 @@
+import tw from "tailwind-styled-components";
+
+const LogoDiv = tw.div<any>`absolute font-logo text-lg text-potato dark:text-light-potato tracking-wider`;
+
 function Logo() {
   return (
-    <div className="absolute font-logo text-lg text-potato dark:text-light-potato">
-      🥔 CryptoPotato 🥔
-    </div>
+    <LogoDiv>
+      <span> 🥔CryptoPotato🥔</span>
+    </LogoDiv>
   );
 }
 
