@@ -27,7 +27,6 @@ const GlobalStyle = createGlobalStyle`
   }`;
 
 function App() {
-  // const [isLight, setIsLightAtom] = useRecoilState(isLightAtom);
   const isLight = useRecoilValue(isLightAtom);
 
   return (
@@ -35,7 +34,7 @@ function App() {
       <ThemeProvider theme={isLight ? lightTheme : darkTheme}>
         <GlobalStyle />
         <Contents>
-          <Header />            
+          <Header />
           <Body>
             <Router />
           </Body>

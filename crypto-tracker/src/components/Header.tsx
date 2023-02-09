@@ -1,12 +1,12 @@
 import { HeaderArea } from "../styles/BigGrid";
-import HomeLink from "./HomeLink";
+import Back from "./Back";
 import Logo from "./Logo";
 import ThemeToggleBtn from "./ThemeToggleBtn";
 
 function Header() {
   return (
     <HeaderArea>
-      <HomeLink />
+      <Back />
       <Logo />
       <ThemeToggleBtn />
     </HeaderArea>

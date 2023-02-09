@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import { isLightAtom } from "../atoms";
-import { ThemeBtnDiv} from "../styles/BigGrid";
+import { ThemeBtnDiv } from "../styles/BigGrid";
 
 function ThemeToggleBtn() {
   const [isLight, setIsLightAtom] = useRecoilState(isLightAtom);
@@ -8,7 +8,9 @@ function ThemeToggleBtn() {
 
   return (
     <ThemeBtnDiv>
-      <button onClick={toggleTheme}>{isLight ? "LightMode" : "DarkMode"}</button>
+      <button onClick={toggleTheme}>
+        {isLight ? "LightMode" : "DarkMode"}
+      </button>
     </ThemeBtnDiv>
   );
 }
