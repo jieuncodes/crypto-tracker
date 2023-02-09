@@ -6,9 +6,11 @@ import Router from "./Router";
 import { isLightAtom } from "./atoms";
 import { lightTheme, darkTheme } from "./theme";
 import Logo from "./components/Logo";
-import { Contents, Header, Body } from "./styles/BigGrid";
+import { Contents, Body } from "./styles/BigGrid";
 import ThemeToggleBtn from "./components/ThemeToggleBtn";
-import HomeBtn from "./components/HomeBtn";
+import HomeLink from "./components/HomeLink";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -28,20 +30,14 @@ const GlobalStyle = createGlobalStyle`
   }`;
 
 function App() {
-
   const [isLight, setIsLightAtom] = useRecoilState(isLightAtom);
 
   return (
-    <>
+    <BrowserRouter>
       <ThemeProvider theme={isLight ? lightTheme : darkTheme}>
         <GlobalStyle />
-
         <Contents>
-          <Header>
-            <HomeBtn />
-            <Logo />
-            <ThemeToggleBtn />
-          </Header>
+          <Header />            
           <Body>
             <Router />
           </Body>
@@ -49,7 +45,7 @@ function App() {
 
         <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>
-    </>
+    </BrowserRouter>
   );
 }
 

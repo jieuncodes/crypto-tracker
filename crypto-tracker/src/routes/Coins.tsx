@@ -43,25 +43,23 @@ function Coins() {
           </TopCoinsHeader>
 
           {data?.slice(0, 100).map((coin) => (
-            <TopCoinsData>
-              <RankD>{coin.rank}</RankD>
-              <CoinNameD>
-                <CoinImg>
-                  <Link to={`/${coin.id}`} state={coin}>
+            <Link to={`/${coin.id}`} state={coin}>
+              <TopCoinsData>
+                <RankD>{coin.rank}</RankD>
+                <CoinNameD>
+                  <CoinImg>
                     <Img
                       src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}
                     />
-                  </Link>
-                </CoinImg>
-                <CoinName>
-                  <Link to={`/${coin.id}`} state={coin}>
+                  </CoinImg>
+                  <CoinName>
                     <span> {coin.name}</span>
-                  </Link>
-                </CoinName>
-              </CoinNameD>
-              <PriceD>$ {coin.quotes.USD.price.toFixed(2)}</PriceD>
-              <ChangeD>{coin.quotes.USD.percent_change_1h}</ChangeD>
-            </TopCoinsData>
+                  </CoinName>
+                </CoinNameD>
+                <PriceD>$ {coin.quotes.USD.price.toFixed(2)}</PriceD>
+                <ChangeD>{coin.quotes.USD.percent_change_1h}</ChangeD>
+              </TopCoinsData>
+            </Link>
           ))}
         </TopCoins>
       )}

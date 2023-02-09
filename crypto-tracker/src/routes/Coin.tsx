@@ -14,6 +14,7 @@ import { useQuery } from "react-query";
 import { Helmet } from "react-helmet";
 import { ITickers, InfoData } from "../interfaces";
 
+
 const Container = styled.div``;
 
 const Header = styled.header`
@@ -73,9 +74,6 @@ const Tab = styled.span<{ isActive: boolean }>`
 
 const Title = styled.h1``;
 
-const Button = styled(Link)`
-  margin-right: 10px;
-`;
 
 interface RouteState {
   state: { name: string };
@@ -113,7 +111,6 @@ function Coin() {
         </title>
       </Helmet>
       <Header>
-        <Button to="/">⬅️</Button>
         <Title>
           {state?.name
             ? state.name
