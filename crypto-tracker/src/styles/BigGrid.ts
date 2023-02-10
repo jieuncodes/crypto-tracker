@@ -2,7 +2,7 @@ import tw from "tailwind-styled-components";
 
 export const Contents = tw.div<any>`dark:text-white grid grid-flow-dense grid-cols-[auto_auto_auto] w-full h-full`;
 
-export const HeaderArea = tw.div<any>`z-10 fixed flex w-full top-0 h-16 place-items-center justify-center col-span-3 backdrop-blur-sm dark:bg-[#181c20]/30 bg-white/30 shadow-lg dark:text-white`;
+export const HeaderArea = tw.div<any>`z-10 fixed flex w-full top-0 h-16 place-items-center justify-center col-span-3 backdrop-blur-sm  dark:bg-[#181c20]/30  shadow-lg dark:text-white`;
 
 export const ThemeBtnDiv = tw.div<any>`flex -right-6 top-0 h-28 w-28 absolute`;
 

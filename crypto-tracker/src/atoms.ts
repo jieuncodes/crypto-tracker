@@ -1,8 +1,10 @@
 import { atom } from "recoil";
 
-export const lightAtom = atom({
+
+
+export const lightAtom = atom<Boolean>({
   key: "light",
-  default: true,
+  default: localStorage.getItem("SAVED_THEME") == "lightTheme" ? true : false,
 });
 
 export const timeRangeAtom = atom<String>({

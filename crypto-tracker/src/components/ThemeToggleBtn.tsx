@@ -7,9 +7,9 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 function ThemeToggleBtn() {
   const [isLight, setlightAtom] = useRecoilState(lightAtom);
 
-  const toggleTheme = () => {
-    setlightAtom((current) => !current);
-    if (isLight == true) {
+  const onClick = () => {
+    setlightAtom((current) => {console.log('isLight', isLight); return !current});
+    if (!isLight) {
       localStorage.setItem("SAVED_THEME", "lightTheme");
       document.documentElement.classList.remove("dark");
     } else {
@@ -20,7 +20,7 @@ function ThemeToggleBtn() {
 
   return (
     <ThemeBtnDiv>
-      <ThemeBtn onClick={toggleTheme}>
+      <ThemeBtn onClick={onClick}>
         {isLight ? (
           <LightModeIcon fontSize="medium" />
         ) : (
