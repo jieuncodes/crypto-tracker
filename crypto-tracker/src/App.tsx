@@ -33,7 +33,7 @@ function App() {
     localStorage.getItem("SAVED_THEME") == "darkTheme" ? darkTheme : lightTheme;
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <ThemeProvider theme={theme ? theme : light ? lightTheme : darkTheme}>
         <GlobalStyle />
         <Contents>
