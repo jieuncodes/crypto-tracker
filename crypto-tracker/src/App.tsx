@@ -6,7 +6,7 @@ import Router from "./Router";
 import { lightAtom } from "./atoms";
 import { lightTheme, darkTheme } from "./theme";
 import { Contents, Body } from "./styles/BigGrid";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import Header from "./components/Header";
 
 const GlobalStyle = createGlobalStyle`
@@ -33,7 +33,7 @@ function App() {
     localStorage.getItem("SAVED_THEME") == "darkTheme" ? darkTheme : lightTheme;
 
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter>
       <ThemeProvider theme={theme ? theme : light ? lightTheme : darkTheme}>
         <GlobalStyle />
         <Contents>
@@ -45,7 +45,7 @@ function App() {
 
         <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
