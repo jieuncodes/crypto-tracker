@@ -20,7 +20,7 @@ export const Title = tw.h1`
 `;
 
 export const BtnsBox = tw.div<any>`flex w-full justify-end`;
-export const Btns = tw.div<any>`-mr-3 mb-3 w-auto p-2 h-10 flex flex-row text-lg justify-around rounded-2xl border-solid border-2  border-gray-300 align-middle items-center`;
+export const Btns = tw.div<any>`-mr-3 mb-3 w-auto p-2 h-10 flex flex-row text-lg justify-around rounded-2xl border-solid border-[1px]  border-gray-300 align-middle items-center`;
 export const Time = tw.div`flex hover:cursor-pointer justify-center align-middle w-14 h-8 rounded-2xl hover:bg-gray-300 pt-[2px]`;
 
 export const Coin = tw.div`
@@ -63,4 +63,4 @@ export const CoinNameD = tw.div<any>` flex flex-row place-items-center text-star
 export const CoinImg = tw.div<any>`mr-4`;
 export const CoinName = tw.div<any>``;
 export const PriceD = tw.div`flex justify-end place-items-center `;
-export const ChangeD = tw.div`flex justify-end place-items-center `;
+export const ChangeD = tw.div<any>`flex justify-end place-items-center `;

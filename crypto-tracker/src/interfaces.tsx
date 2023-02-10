@@ -51,4 +51,22 @@ export interface InfoData {
   hash_algorithm: string;
   first_data_at: string;
   last_data_at: string;
+  logo: string;
+}
+
+
+export interface RouteState {
+  state: { name: string };
+}
+
+export interface IQuote {
+  ath_price: number;
+  market_cap: number;
+  percent_change_1h: number;
+  volume_24h: number;
+}
+
+export interface IPrice {
+  price: any;
+  name: string;
 }

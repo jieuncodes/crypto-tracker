@@ -5,12 +5,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        potato: "#ce9a64",
-        "light-potato": "#f4c381",
+        "potato": "#ce9a64",
+        "lightpotato": "#f4c381",
       },
     },
     fontFamily: {
       logo: ["Bungee", "cursive"],
+      roboto: ['Roboto', "sans-serif"],
+
     },
   },
   plugins: [],
