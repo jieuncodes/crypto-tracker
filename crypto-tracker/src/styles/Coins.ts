@@ -1,5 +1,6 @@
 import tw from "tailwind-styled-components";
 
+
 export const Container = tw.div<any>`
   w-full`;
 
@@ -14,9 +15,13 @@ export const Title = tw.h1`
   text-2xl
   ml-0
   mb-8
-  text-black
   dark:text-white
+  text-black
 `;
+
+export const BtnsBox = tw.div<any>`flex w-full justify-end`;
+export const Btns = tw.div<any>`-mr-3 mb-3 w-auto p-2 h-10 flex flex-row text-lg justify-around rounded-2xl border-solid border-2  border-gray-300 align-middle items-center`;
+export const Time = tw.div`flex hover:cursor-pointer justify-center align-middle w-14 h-8 rounded-2xl hover:bg-gray-300 pt-[2px]`;
 
 export const Coin = tw.div`
   w-full
@@ -46,7 +51,7 @@ export const TopCoinsHeader = tw.div<any>`
   border-b-[1px] border-gray-300 dark:border-gray-500
 `;
 export const RankH = tw.div`flex justify-center place-items-center `;
-export const CoinNameH = tw.div`flex flex-row place-items-center  text-start -m-[60px]`;
+export const CoinNameH = tw.div`flex flex-row place-items-center text-start -m-[60px]`;
 export const PriceH = tw.div`flex justify-end place-items-center `;
 export const ChangeH = tw.div`flex justify-end place-items-center `;
 

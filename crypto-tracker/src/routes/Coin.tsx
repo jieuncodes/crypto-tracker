@@ -12,7 +12,7 @@ import Price from "./Price";
 import { fetchCoinInfo, fetchTickerInfo } from "../api";
 import { useQuery } from "react-query";
 import { Helmet } from "react-helmet";
-import { ITickers, InfoData } from "../interfaces";
+import { InfoData, ITickers } from "../interfaces";
 
 
 const Container = styled.div``;

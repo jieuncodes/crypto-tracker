@@ -5,7 +5,7 @@ export const lightAtom = atom({
   default: true,
 });
 
-export const timeRangeAtom = atom({
+export const timeRangeAtom = atom<String>({
   key: "timeRange",
   default: "1h",
 });

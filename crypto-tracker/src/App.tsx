@@ -1,7 +1,7 @@
 import reset from "styled-reset";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import Router from "./Router";
 import { lightAtom } from "./atoms";
 import { lightTheme, darkTheme } from "./theme";
