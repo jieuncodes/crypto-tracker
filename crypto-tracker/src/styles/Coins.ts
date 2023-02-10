@@ -13,9 +13,9 @@ export const Title = tw.h1`
   font-bold
   text-2xl
   ml-0
-  text-black
   mb-8
-
+  text-black
+  dark:text-white
 `;
 
 export const Coin = tw.div`
@@ -23,7 +23,6 @@ export const Coin = tw.div`
   border-solid
   border-b-2
   border-grey
-  
 `;
 export const Loader = tw.span`
     align-middle
@@ -44,17 +43,18 @@ export const TopCoinsHeader = tw.div<any>`
   text-lg
   pb-2
   border-solid
-  border-b-[1px] border-slate-300
+  border-b-[1px] border-gray-300 dark:border-gray-500
 `;
 export const RankH = tw.div`flex justify-center place-items-center `;
 export const CoinNameH = tw.div`flex flex-row place-items-center  text-start -m-[60px]`;
 export const PriceH = tw.div`flex justify-end place-items-center `;
 export const ChangeH = tw.div`flex justify-end place-items-center `;
 
-export const TopCoinsData = tw.div<any>` grid-cols-[60px_2fr_1fr_100px] grid w-full h-20 border-solid border-b-[1px]  border-slate-300 align-middle hover:bg-slate-200 transition duration-150 ease-out hover:ease-in `;
+export const TopCoinsData = tw.div<any>`grid-cols-[60px_2fr_1fr_100px] grid w-full h-20 border-solid border-b-[1px]    border-gray-300
+dark:border-gray-500 align-middle hover:bg-gray-300 dark:hover:bg-gray-500 transition duration-150 ease-out hover:ease-in `;
 
 export const RankD = tw.div`flex justify-start place-items-center text-center ml-3`;
-export const CoinNameD = tw.div<any>` flex flex-row place-items-center  text-start`;
+export const CoinNameD = tw.div<any>` flex flex-row place-items-center text-start text-lg`;
 export const CoinImg = tw.div<any>`mr-4`;
 export const CoinName = tw.div<any>``;
 export const PriceD = tw.div`flex justify-end place-items-center `;

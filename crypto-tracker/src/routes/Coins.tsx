@@ -22,6 +22,7 @@ import {
 } from "../styles/Coins";
 import { ITickers } from "../interfaces";
 import { fetchTickers } from "../api";
+import TimeRangeBtns from "../components/TimeRangeBtns";
 
 function Coins() {
   const { isLoading, data } = useQuery<ITickers[]>("allCoins", fetchTickers);
@@ -30,6 +31,7 @@ function Coins() {
     <Container>
       <Header>
         <Title>Top Coins</Title>
+        <TimeRangeBtns />
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>
