@@ -27,14 +27,14 @@ const GlobalStyle = createGlobalStyle`
   }`;
 
 function App() {
-  const light = useRecoilState(lightAtom);
+  const [isLight, setIsLight] = useRecoilState(lightAtom);
 
-  let theme =
+  let savedTheme =
     localStorage.getItem("SAVED_THEME") == "darkTheme" ? darkTheme : lightTheme;
 
   return (
     <BrowserRouter>
-      <ThemeProvider theme={theme ? theme : light ? lightTheme : darkTheme}>
+      <ThemeProvider theme={savedTheme ? savedTheme : lightTheme}>
         <GlobalStyle />
         <Contents>
           <Header />

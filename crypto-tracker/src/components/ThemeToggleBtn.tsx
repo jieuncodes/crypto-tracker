@@ -9,12 +9,12 @@ function ThemeToggleBtn() {
 
   const toggleTheme = () => {
     setlightAtom((current) => !current);
-    if (isLight == true) {
-      localStorage.setItem("SAVED_THEME", "lightTheme");
-      document.documentElement.classList.remove("dark");
-    } else {
+    if (isLight) {
       localStorage.setItem("SAVED_THEME", "darkTheme");
       document.documentElement.classList.add("dark");
+    } else {
+      localStorage.setItem("SAVED_THEME", "lightTheme");
+      document.documentElement.classList.remove("dark");
     }
   };
 
