@@ -1,7 +1,7 @@
 import reset from "styled-reset";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import Router from "./Router";
 import { lightAtom } from "./atoms";
 import { lightTheme, darkTheme } from "./theme";
@@ -27,14 +27,11 @@ const GlobalStyle = createGlobalStyle`
   }`;
 
 function App() {
-  const light = useRecoilState(lightAtom);
-
-  let theme =
-    localStorage.getItem("SAVED_THEME") == "darkTheme" ? darkTheme : lightTheme;
+  const isLight = useRecoilValue(lightAtom);
 
   return (
     <HashRouter>
-      <ThemeProvider theme={theme ? theme : light ? lightTheme : darkTheme}>
+      <ThemeProvider theme={isLight ? lightTheme : darkTheme}>
         <GlobalStyle />
         <Contents>
           <Header />

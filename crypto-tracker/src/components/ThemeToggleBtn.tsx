@@ -8,7 +8,7 @@ function ThemeToggleBtn() {
   const [isLight, setlightAtom] = useRecoilState(lightAtom);
 
   const onClick = () => {
-    setlightAtom((current) => {console.log('isLight', isLight); return !current});
+    setlightAtom((current) => !current);
     if (!isLight) {
       localStorage.setItem("SAVED_THEME", "lightTheme");
       document.documentElement.classList.remove("dark");
