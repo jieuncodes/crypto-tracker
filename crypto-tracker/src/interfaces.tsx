@@ -54,7 +54,6 @@ export interface InfoData {
   logo: string;
 }
 
-
 export interface RouteState {
   state: { name: string };
 }
@@ -68,5 +67,4 @@ export interface IQuote {
 
 export interface IPrice {
   price: any;
-  name: string;
 }

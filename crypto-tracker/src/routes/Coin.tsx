@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import {
   Link,
   Route,
@@ -13,10 +12,10 @@ import { fetchCoinInfo, fetchTickerInfo } from "../api";
 import { useQuery } from "react-query";
 import { Helmet } from "react-helmet";
 import { InfoData, ITickers, RouteState } from "../interfaces";
-import { Container } from "@mui/material";
 import {
   ChangeData,
   CoinImg,
+  Container,
   Description,
   Header,
   Img,
@@ -24,6 +23,7 @@ import {
   PriceData,
   Rank,
   ShowMoreBtn,
+  Tab,
   Tabs,
   Ticker,
   Title,
@@ -32,26 +32,6 @@ import ChangeDataOfTime from "../components/ChangeDataOfTime";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { lightAtom, showFullTextAtom } from "../atoms";
 import ShortenedText from "../components/ShortendText";
-
-export const Tab = styled.span<{ isActive: boolean }>`
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 15px;
-  font-weight: 400;
-  background-color: rgba(206, 154, 100, 0.2);
-  border: solid;
-  border: 1px;
-  padding: 7px 0px;
-  border-radius: 10px;
-  background-color: ${(props) =>
-    props.isActive ? props.theme.accentColor : null};
-  
-  a {
-    padding: 7px 0px;
-    display: block;
-  }
-`;
-
 
 function Coin() {
   const { state } = useLocation() as RouteState;
@@ -94,8 +74,8 @@ function Coin() {
           <Img src={infoData?.logo} />
         </CoinImg>
         <Title>
-          {state?.name
-            ? state.name
+          {infoData?.name
+            ? infoData.name
             : infoLoading || tickersLoading
             ? "Loading..."
             : null}
@@ -114,16 +94,20 @@ function Coin() {
           <div>"loading..."</div>
         )}
       </PriceChange>
-      {infoData ? infoData.description.length > 200 ? (
-        <>
-          <Description>
-            {ShortenedText(infoData?.description, 200, showFullText)}
-          </Description>
-          <ShowMoreBtn onClick={onClick}>{showFullText ? "▲ less": "more ▼"}</ShowMoreBtn>
-        </>
-      ):(<Description>
-        {infoData.description}
-      </Description>) : (
+      {infoData ? (
+        infoData.description.length > 200 ? (
+          <>
+            <Description>
+              {ShortenedText(infoData?.description, 200, showFullText)}
+            </Description>
+            <ShowMoreBtn onClick={onClick}>
+              {showFullText ? "▲ less" : "more ▼"}
+            </ShowMoreBtn>
+          </>
+        ) : (
+          <Description>{infoData.description}</Description>
+        )
+      ) : (
         <div>"loading..."</div>
       )}
 
@@ -139,12 +123,7 @@ function Coin() {
       <Routes>
         <Route
           path="price"
-          element={
-            <Price
-              name={tickersData?.name as string}
-              price={tickersData?.quotes.USD}
-            />
-          }
+          element={<Price price={tickersData?.quotes.USD} />}
         />
         <Route path="chart" element={<Chart coinId={coinId!} />} />
       </Routes>

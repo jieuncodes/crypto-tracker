@@ -1,18 +1,10 @@
-import styled from "styled-components";
-import { Helmet } from "react-helmet";
 import { IPrice, IQuote } from "../interfaces";
-import { Container, Content, ContentTitle, ContentMain  } from "../styles/Price";
+import { Container, Content, ContentTitle, ContentMain } from "../styles/Price";
 
-
-
-
-function Price({ price, name }: IPrice) {
+function Price({ price }: IPrice) {
   const priceData: IQuote = price;
   return (
     <Container>
-      <Helmet>
-        <title>{`${name} Price`}</title>
-      </Helmet>
       <Content>
         <ContentTitle>All Time High</ContentTitle>
         <ContentMain>${priceData.ath_price}</ContentMain>

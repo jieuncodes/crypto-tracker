@@ -1,6 +1,5 @@
 import tw from "tailwind-styled-components";
 
-
 export const Container = tw.div<any>`
   w-full`;
 
@@ -15,8 +14,6 @@ export const Title = tw.h1`
   text-2xl
   ml-0
   mb-8
-  dark:text-white
-  text-black
 `;
 
 export const BtnsBox = tw.div<any>`flex w-full justify-end`;
