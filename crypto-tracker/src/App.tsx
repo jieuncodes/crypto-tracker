@@ -1,13 +1,14 @@
 import reset from "styled-reset";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import Router from "./Router";
 import { lightAtom } from "./atoms";
 import { lightTheme, darkTheme } from "./theme";
 import { Contents, Body } from "./styles/BigGrid";
-import { BrowserRouter, HashRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import Header from "./components/Header";
+import { Helmet } from "react-helmet";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -31,6 +32,12 @@ function App() {
 
   return (
     <HashRouter>
+      <Helmet>
+        <meta
+          http-equiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        />
+      </Helmet>
       <ThemeProvider theme={isLight ? lightTheme : darkTheme}>
         <GlobalStyle />
         <Contents>
