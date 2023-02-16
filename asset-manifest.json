@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "https://jieuncodes.github.io/crypto-tracker/static/css/main.9a70bbdc.css",
+    "main.js": "https://jieuncodes.github.io/crypto-tracker/static/js/main.125640a9.js",
+    "index.html": "https://jieuncodes.github.io/crypto-tracker/index.html",
+    "main.9a70bbdc.css.map": "https://jieuncodes.github.io/crypto-tracker/static/css/main.9a70bbdc.css.map",
+    "main.125640a9.js.map": "https://jieuncodes.github.io/crypto-tracker/static/js/main.125640a9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9a70bbdc.css",
+    "static/js/main.125640a9.js"
+  ]
+}
