@@ -1,6 +1,20 @@
-#Crypto Tracker
--[x] Dark mode toggle button
--[x] Home Button
--[ ] /:coinId/price
--[x] /:coinId/chart
--[x] Candle stick chart
+<h1 align="center">Welcome to crypto-tracker 👋</h1>
+
+<p>
+![output](https://user-images.githubusercontent.com/110220308/219596089-04abbb33-058e-4463-956d-60f4318ef011.gif
+
+</p>
+
+### 🏠 [Homepage](https://jieuncodes.github.io/crypto-tracker-deploy)
+
+## Install
+
+```sh
+npm install
+```
+
+## Usage
+
+```sh
+npm run start
+```
