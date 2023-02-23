@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/crypto-tracker-test/static/css/main.9a70bbdc.css",
-    "main.js": "/crypto-tracker-test/static/js/main.fb61f87d.js",
-    "index.html": "/crypto-tracker-test/index.html",
-    "main.9a70bbdc.css.map": "/crypto-tracker-test/static/css/main.9a70bbdc.css.map",
-    "main.fb61f87d.js.map": "/crypto-tracker-test/static/js/main.fb61f87d.js.map"
+    "main.css": "https://jieuncodes.github.io/crypto-tracker/static/css/main.9a70bbdc.css",
+    "main.js": "https://jieuncodes.github.io/crypto-tracker/static/js/main.125640a9.js",
+    "index.html": "https://jieuncodes.github.io/crypto-tracker/index.html",
+    "main.9a70bbdc.css.map": "https://jieuncodes.github.io/crypto-tracker/static/css/main.9a70bbdc.css.map",
+    "main.125640a9.js.map": "https://jieuncodes.github.io/crypto-tracker/static/js/main.125640a9.js.map"
   },
   "entrypoints": [
     "static/css/main.9a70bbdc.css",
-    "static/js/main.fb61f87d.js"
+    "static/js/main.125640a9.js"
   ]
 }
